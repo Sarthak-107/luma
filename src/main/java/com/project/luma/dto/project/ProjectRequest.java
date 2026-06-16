@@ -1,6 +1,9 @@
 package com.project.luma.dto.project;
 
+import jakarta.validation.constraints.NotBlank;
+
 public record ProjectRequest(
-        String name
+
+       @NotBlank String name
 ) {
 }

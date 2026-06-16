@@ -5,6 +5,7 @@ import com.project.luma.dto.project.ProjectResponse;
 import com.project.luma.dto.project.ProjectSummaryResponse;
 import com.project.luma.entity.Project;
 import com.project.luma.entity.User;
+import com.project.luma.error.ResourceNotFoundException;
 import com.project.luma.mapper.ProjectMapper;
 import com.project.luma.repository.ProjectRepository;
 import com.project.luma.repository.UserRepository;
@@ -74,6 +75,6 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     private Project getAccessibleProjectById(Long projectId, Long userId){
-        return projectRepository.findAccessibleProjectById(projectId,userId).orElseThrow();
+        return projectRepository.findAccessibleProjectById(projectId,userId).orElseThrow(() -> new ResourceNotFoundException("Project", projectId.toString()));
     }
 }

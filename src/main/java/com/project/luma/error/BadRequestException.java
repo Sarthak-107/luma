@@ -1,13 +1,13 @@
 package com.project.luma.error;
 
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+@Getter
 @FieldDefaults(makeFinal = true, level = lombok.AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 public class BadRequestException extends RuntimeException {
-    String resourceName;
-    String resourceId;
-
+    String message;
 }

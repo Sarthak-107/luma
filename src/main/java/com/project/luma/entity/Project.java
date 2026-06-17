@@ -14,7 +14,12 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "projects")
+@Table(name = "projects",
+        indexes = {
+            @Index(name = "idx_updated_at_desc", columnList = "updatedAt DESC, deletedAt"),
+            @Index(name = "idx_deleted-at", columnList = "deletedAt")
+        }
+)
 public class Project {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +27,6 @@ public class Project {
 
     @Column(nullable = false)
     String name;
-
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
-    User owner;
 
     Boolean isPublic = false;
 
